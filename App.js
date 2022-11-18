@@ -1,20 +1,11 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { Home } from './src/screens/Home';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-
-const Stack = createNativeStackNavigator()
+import { RotasPublicas } from './src/routes/RotasPublicas';
 
 const App = () => {
-
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Detalhes" component={() => <Text>DETALHES</Text>} />
-      </Stack.Navigator>
+      <RotasPublicas />
     </NavigationContainer>
   );
 };
