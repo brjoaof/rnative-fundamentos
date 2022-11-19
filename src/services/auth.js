@@ -1,4 +1,4 @@
-export const login = (username, password) => {
+export const login = () => {
     // if(username == "brjoaof" && password == "senha@123")
     //return await api.post("/login", { login: username, password: password})
     return new Promise( resolve => {

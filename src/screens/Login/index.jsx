@@ -1,16 +1,19 @@
 import { useState } from 'react';
 import {Text, View, StyleSheet, Button, TextInput} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { login } from '../../services/auth';
+import { useContext } from 'react'
+import AuthContext from '../../contexts/AuthContext';
 
 const Login = () => {
   const [userName, setUserName] = useState("")
   const [password, setPassword] = useState("")
+  const { loginContext } = useContext(AuthContext)
 
   const handleLogin = async () => {
-    const response = await login(userName, password);
-    console.log(response)
+    if(userName != "" && password != "") {
+      loginContext()
+    }
   }
   
 
