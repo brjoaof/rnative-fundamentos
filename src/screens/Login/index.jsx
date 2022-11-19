@@ -1,43 +1,25 @@
-import {Text, View, StyleSheet, Button} from 'react-native';
+import { useState } from 'react';
+import {Text, View, StyleSheet, Button, TextInput} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useEffect } from 'react';
+import { login } from '../../services/auth';
 
-const Login = ({navigation}) => {
+const Login = () => {
+  const [userName, setUserName] = useState("")
+  const [password, setPassword] = useState("")
 
-  const salvar = async () => {
-    try {
-      await AsyncStorage.setItem('@manter_conectado', 'true');
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const obter = async () => {
-    try {
-      const value = await AsyncStorage.getItem('@manter_conectado');
-      if (value !== null && value == "true") {
-        console.log(value);
-        navigation.navigate("Privado")
-      } else {
-        console.error("Nenhuma informação encontrada")
-      }
-    } catch (e) {
-        console.error(e);
-    }
-  };
-
-  useEffect(() => {
-    obter()
-  }, [])
+  const handleLogin = async () => {
+    const response = await login(userName, password);
+    console.log(response)
+  }
+  
 
   return (
     <View style={styles.container}>
       <Text>Login</Text>
-      <Icon name="restore-from-trash" size={150} color="#f00" />
-      <Button title="ENTRAR" onPress={() => navigation.navigate('Privado')} />
-      <Button title="Salvar no AsyncStorage" onPress={salvar} />
-      <Button title="Obter AsyncStorage" onPress={obter} />
+      <TextInput placeholder='INSIRA SEU LOGIN' onChangeText={setUserName} value={userName}/>
+      <TextInput placeholder='INSIRA SUA SENHA' onChangeText={setPassword} value={password}/>
+      <Button title="ENTRAR" onPress={() => handleLogin()} />
     </View>
   );
 };

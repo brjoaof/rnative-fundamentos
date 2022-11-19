@@ -1,11 +1,11 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { RotasPublicas } from './src/routes/RotasPublicas';
+import Routes from './src/routes';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <RotasPublicas />
+      <Routes />
     </NavigationContainer>
   );
 };
